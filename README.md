@@ -1,2 +1,20 @@
-# production-analytics-tool
-Manufacturing data analytics application made in Python.
+# Production Analytics Tool
+
+Python project for analysing manufacturing and production data.
+
+## Features
+
+- Production KPI calculations
+- Efficiency analysis
+- Profitability calculations
+- Automated reporting
+
+## Technologies
+
+- Python
+- Git
+- GitHub
+
+## Status
+
+In development
