@@ -1,7 +1,12 @@
-#with open("data/tuotanto.txt", "r", encoding="utf-8") as f:
-    #tuotanto = f.read()
-tuotanto = [420, 450, 470, 460, 490]
 TAVOITE = 500
+
+def lue_tuotanto_data(tiedosto):
+    lista = []
+    with open(tiedosto,"r", encoding="utf-8") as f:
+        data = f.read().splitlines()
+        for rivi in data:
+            lista.append(int(rivi))
+    return lista
 
 def laske_kokonaismaara(lista):
     return sum(lista)
@@ -27,4 +32,5 @@ def tulosta_raportti(lista, tavoite):
     Pienin päivä: {laske_minimi(lista)}
     Tehokkuus: {laske_tehokkuus(lista, tavoite):.1f} %""")
 
+tuotanto = lue_tuotanto_data("data/tuotanto.txt")
 tulosta_raportti(tuotanto, TAVOITE)
