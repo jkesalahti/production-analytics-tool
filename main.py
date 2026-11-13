@@ -20,7 +20,7 @@ def lue_tuotanto_data(tiedosto):
             })
     return data
 
-data = lue_tuotanto_data("data/tuotanto.csv")
+
 
 def tulosta_raportti(lista, tavoite, myyntihinta, valmistuskustannus):
     paras = paras_paiva(lista)
@@ -50,6 +50,13 @@ Paras tehdas: {paras_nimi} ({paras_maara})
 Heikoin tehdas: {heikoin_nimi} ({heikoin_maara})
 """)
 
-tulosta_raportti(data, TAVOITE, MYYNTIHINTA, VALMISTUSKUSTANNUS)
+if __name__ == "__main__":
+    data = lue_tuotanto_data("data/tuotanto.csv")
+    tulosta_raportti(
+    data,
+    TAVOITE,
+    MYYNTIHINTA 
+    VALMISTUSKUSTANNUS
+)
 
         
