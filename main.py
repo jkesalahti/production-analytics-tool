@@ -1,4 +1,6 @@
 TAVOITE = 500
+MYYNTIHINTA = 15
+VALMISTUSKUSTANNUS = 9
 
 def lue_tuotanto_data(tiedosto):
     data = []
@@ -63,9 +65,18 @@ def heikoin_paiva(lista):
         if rivi["maara"] < heikoin["maara"]:
             heikoin = rivi
     return heikoin
+    
+def laske_liikevaihto(lista, myyntihinta):
+    return laske_kokonaismaara(lista) * myyntihinta
+        
 
+def laske_kustannukset(lista, valmistuskustannus):
+    return laske_kokonaismaara(lista) * valmistuskustannus
 
-def tulosta_raportti(lista, tavoite):
+def laske_kate(lista, myyntihinta, valmistuskustannus):
+    return laske_liikevaihto(lista, myyntihinta) - laske_kustannukset(lista, valmistuskustannus)
+
+def tulosta_raportti(lista, tavoite, myyntihinta, valmistuskustannus):
     paras = paras_paiva(lista)
     heikoin = heikoin_paiva(lista)
     print(f"""TUOTANTORAPORTTI
@@ -78,8 +89,12 @@ Tehokkuus: {laske_tehokkuus(lista, tavoite):.1f} %
 
 Paras päivä: {paras["paiva"]} ({paras["maara"]})
 Heikoin päivä: {heikoin["paiva"]} ({heikoin["maara"]})
+
+TALOUS
+
+Liikevaihto: {laske_liikevaihto(lista, myyntihinta)} €"
+Kustannukset: {laske_kustannukset(lista, valmistuskustannus)} €"
+Kate: {laske_kate(lista, myyntihinta, valmistuskustannus)} €"
 """)
 
-
-tulosta_raportti(data, TAVOITE)
-
+tulosta_raportti(data, TAVOITE, MYYNTIHINTA, VALMISTUSKUSTANNUS)
